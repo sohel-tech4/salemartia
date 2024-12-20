@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Products = ({ item }) => {
-  const { title, price, description, image } = item;
+  const { title, price, description, image, rating } = item;
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {
@@ -25,6 +25,17 @@ const Products = ({ item }) => {
             className="w-full h-full object-contain"
           />
         </figure>
+        {rating?.count >= 1 ? (
+          <>
+            <p className="absolute bg-purple-600 top-0 left-0 m-2 px-2 text-white rounded-md">
+              Stock
+            </p>
+          </>
+        ) : (
+          <p className="absolute bg-purple-600 top-0 left-0 m-2 px-2 text-white rounded-md">
+            Out of Stock
+          </p>
+        )}
         <div className="gap-3">
           <h2 className="card-title">{title}</h2>
           <p>

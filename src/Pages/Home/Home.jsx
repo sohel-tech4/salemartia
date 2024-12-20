@@ -34,19 +34,24 @@ const Home = () => {
     setSelectedRange(event.target.value);
   };
 
-  const filteredItems = items.filter(
-    (item) =>
-      item.title.toLowerCase().includes(product.toLowerCase()) &&
-      (selectedCategory ? item.category === selectedCategory : true) &&
-      item.price >= selectedRange
-  );
+  const filteredItems = items.filter((item) => {
+    const isTitleMatch = item.title
+      .toLowerCase()
+      .includes(product.toLowerCase());
+    const isCategoryMatch = selectedCategory
+      ? item.category === selectedCategory
+      : true;
+    const isPriceMatch = selectedRange ? item.price <= selectedRange : true;
+
+    return isTitleMatch && isCategoryMatch && isPriceMatch;
+  });
 
   return (
-    <div className="pb-10">
+    <div className="pb-5">
       <h1 className="text-center text-2xl py-5">Show All Products</h1>
       <div className="flex">
         <div className="mx-5">
-          <div className="pb-5">
+          <div className="">
             <label className="input input-bordered flex items-center gap-2">
               <input
                 type="text"
@@ -68,7 +73,8 @@ const Home = () => {
               </svg>
             </label>
           </div>
-          <div className="form-control pb-5 w-full max-w-xs">
+          <div className="divider"></div>
+          <div className="form-control w-full max-w-xs">
             <select
               className="select select-bordered"
               onChange={handleCategoryChange}
@@ -84,9 +90,10 @@ const Home = () => {
               ))}
             </select>
           </div>
-          <div>
+          <div className="divider"></div>
+          <div className="">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Price Range: Over ${selectedRange}
+              Price Range: Up to ${selectedRange}
             </label>
             <input
               type="range"
@@ -105,6 +112,19 @@ const Home = () => {
               <span>$100</span>
             </div>
           </div>
+          <div className="divider"></div>
+          {/* <div className="form-control">
+            <div className="form-control">
+              <label className="label cursor-pointer">
+                <span className="label-text">Stock</span>
+                <input type="checkbox" defaultChecked className="checkbox" />
+              </label>
+              <label className="label cursor-pointer">
+                <span className="label-text">Out of stock</span>
+                <input type="checkbox" defaultChecked className="checkbox" />
+              </label>
+            </div>
+          </div> */}
         </div>
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {filteredItems.length === 0 ? (
