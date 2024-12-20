@@ -6,6 +6,7 @@ const Home = () => {
   const [product, setProduct] = useState("");
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedRange, setSelectedRange] = useState(0);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -29,14 +30,19 @@ const Home = () => {
     setSelectedCategory(event.target.value);
   };
 
+  const handleRangeChange = (event) => {
+    setSelectedRange(event.target.value);
+  };
+
   const filteredItems = items.filter(
     (item) =>
       item.title.toLowerCase().includes(product.toLowerCase()) &&
-      (selectedCategory ? item.category === selectedCategory : true)
+      (selectedCategory ? item.category === selectedCategory : true) &&
+      item.price >= selectedRange
   );
 
   return (
-    <div className="">
+    <div className="pb-10">
       <h1 className="text-center text-2xl py-5">Show All Products</h1>
       <div className="flex">
         <div className="mx-5">
@@ -62,13 +68,13 @@ const Home = () => {
               </svg>
             </label>
           </div>
-          <label className="form-control w-full max-w-xs">
+          <div className="form-control pb-5 w-full max-w-xs">
             <select
               className="select select-bordered"
               onChange={handleCategoryChange}
               value={selectedCategory}
             >
-              <option disabled selected>
+              <option value="" disabled>
                 Search By Category
               </option>
               {categories.map((category, index) => (
@@ -77,12 +83,37 @@ const Home = () => {
                 </option>
               ))}
             </select>
-          </label>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Price Range: Over ${selectedRange}
+            </label>
+            <input
+              type="range"
+              min={0}
+              max="100"
+              onChange={handleRangeChange}
+              value={selectedRange}
+              className="range"
+              step="1"
+            />
+            <div className="flex w-full justify-between px-2 text-xs">
+              <span>$0</span>
+              <span>$25</span>
+              <span>$50</span>
+              <span>$75</span>
+              <span>$100</span>
+            </div>
+          </div>
         </div>
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {filteredItems.map((item) => (
-            <Products key={item.id} item={item} />
-          ))}
+          {filteredItems.length === 0 ? (
+            <div className="text-center text-2xl col-span-full text-red-600 justify-center flex items-center">
+              No products found
+            </div>
+          ) : (
+            filteredItems.map((item) => <Products key={item.id} item={item} />)
+          )}
         </div>
       </div>
     </div>
