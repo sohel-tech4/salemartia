@@ -49,7 +49,7 @@ const Home = () => {
   return (
     <div className="pb-5">
       <h1 className="text-center text-2xl py-5">Show All Products</h1>
-      <div className="flex">
+      <div className="sm:flex">
         <div className="mx-5">
           <div className="">
             <label className="input input-bordered flex items-center gap-2">
@@ -113,18 +113,6 @@ const Home = () => {
             </div>
           </div>
           <div className="divider"></div>
-          {/* <div className="form-control">
-            <div className="form-control">
-              <label className="label cursor-pointer">
-                <span className="label-text">Stock</span>
-                <input type="checkbox" defaultChecked className="checkbox" />
-              </label>
-              <label className="label cursor-pointer">
-                <span className="label-text">Out of stock</span>
-                <input type="checkbox" defaultChecked className="checkbox" />
-              </label>
-            </div>
-          </div> */}
         </div>
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {filteredItems.length === 0 ? (

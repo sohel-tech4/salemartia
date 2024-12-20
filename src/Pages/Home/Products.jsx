@@ -16,9 +16,9 @@ const Products = ({ item }) => {
   };
 
   return (
-    <div className="card bg-base-100 w-96 shadow-xl p-3">
+    <div className="card bg-base-100 w-auto shadow-xl p-3 sm:px-5">
       <div>
-        <figure className="w-full h-72">
+        <figure className="w-auto h-56">
           <img
             src={image}
             alt={title}
@@ -37,14 +37,14 @@ const Products = ({ item }) => {
           </p>
         )}
         <div className="gap-3">
-          <h2 className="card-title">{title}</h2>
+          <h2 className="card-title text-base font-bold">{title}</h2>
           <p>
             {isExpanded
               ? description
               : getTruncatedDescription(description, 100)}{" "}
             <span
               onClick={toggleDescription}
-              className="text-blue-500 cursor-pointer"
+              className="text-blue-500 text-xs cursor-pointer"
             >
               {isExpanded ? "See Less" : "See More"}
             </span>
