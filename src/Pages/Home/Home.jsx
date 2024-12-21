@@ -61,7 +61,7 @@ const Home = () => {
   return (
     <div className="pb-5">
       <h1 className="text-center text-2xl py-5">Show All Products</h1>
-      <div className="sm:flex">
+      <div className="sm:flex justify-evenly">
         <div className="mx-5">
           <div className="">
             <label className="input input-bordered flex items-center gap-2">
