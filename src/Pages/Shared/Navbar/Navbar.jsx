@@ -5,7 +5,7 @@ const Navbar = () => {
     <>
       <Link
         to="/"
-        className={`px-3 bg-white text-black rounded hover:duration-1000 ${
+        className={`px-3 text-black rounded hover:duration-1000 ${
           location.pathname === "/" ? "active-link bg-blue-600 text-white" : ""
         }`}
       >
