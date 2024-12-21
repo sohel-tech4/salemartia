@@ -127,7 +127,7 @@ const Home = () => {
             </div>
           </div>
           <div className="divider"></div>
-          <div className="">
+          <div className="pb-5">
             <label className="form-control w-full sm:max-w-xs">
               <div className="label">
                 <span className="label-text">Price Ascending/Descending</span>
@@ -147,12 +147,12 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="container mx-auto px-2 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="container mx-auto px-2 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredItems.length === 0 ? (
             <div className="text-center col-span-full justify-center flex items-center">
               <img
                 className="sm:w-1/2"
-                src="../../../public/nproduct.png"
+                src="https://i.ibb.co.com/W2KWQz5/nproduct.png"
                 alt=""
               />
             </div>

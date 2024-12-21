@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Products = ({ item }) => {
-  const { title, price, description, image, rating } = item;
+  const {id, title, price, description, image, rating } = item;
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {
@@ -17,6 +18,8 @@ const Products = ({ item }) => {
 
   return (
     <div className="card bg-base-100 w-auto justify-evenly shadow-xl p-3 sm:px-5">
+      <Link to={`/productdetails/${id}`}>
+
       <div>
         <figure className="w-auto h-56">
           <img
@@ -27,12 +30,12 @@ const Products = ({ item }) => {
         </figure>
         {rating?.count >= 1 ? (
           <>
-            <p className="absolute bg-purple-600 top-0 left-0 m-2 px-2 text-white rounded-md">
+            <p className="absolute bg-yellow-500 top-0 left-0 m-2 px-2 text-white rounded-md">
               Stock
             </p>
           </>
         ) : (
-          <p className="absolute bg-purple-600 top-0 left-0 m-2 px-2 text-white rounded-md">
+          <p className="absolute bg-yellow-500  top-0 left-0 m-2 px-2 text-white rounded-md">
             Out of Stock
           </p>
         )}
@@ -51,16 +54,18 @@ const Products = ({ item }) => {
           </p>
         </div>
       </div>
+      </Link>
       <div className="flex justify-between items-center mt-3">
         <p className="text-lg font-bold">Price: ${price}</p>
         <a
           href="#_"
-          className="inline-block px-5 py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0"
+          className="inline-block px-2 py-0 text-sm mx-auto text-white bg-blue-800 rounded-full hover:bg-blue-700 mx-0"
         >
-          Button Text
+          Buy Now
         </a>{" "}
       </div>
     </div>
+    
   );
 };
 

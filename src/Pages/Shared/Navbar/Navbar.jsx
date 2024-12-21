@@ -43,7 +43,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to={"/"}>
-            <h1 className="text-4xl">Salemartia</h1>
+            <img className="w-20" src="https://i.ibb.co.com/DRkHNCt/Salemartia.png" alt="" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">{Nav}</div>
