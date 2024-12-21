@@ -16,7 +16,7 @@ const Products = ({ item }) => {
   };
 
   return (
-    <div className="card bg-base-100 w-auto shadow-xl p-3 sm:px-5">
+    <div className="card bg-base-100 w-auto justify-evenly shadow-xl p-3 sm:px-5">
       <div>
         <figure className="w-auto h-56">
           <img
@@ -53,7 +53,12 @@ const Products = ({ item }) => {
       </div>
       <div className="flex justify-between items-center mt-3">
         <p className="text-lg font-bold">Price: ${price}</p>
-        <button className="btn btn-primary">Buy Now</button>
+        <a
+          href="#_"
+          className="inline-block px-5 py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0"
+        >
+          Button Text
+        </a>{" "}
       </div>
     </div>
   );

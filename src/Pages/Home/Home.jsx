@@ -7,6 +7,7 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedRange, setSelectedRange] = useState(0);
+  const [accendingDescending, setAccendingDescending] = useState("");
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -34,17 +35,28 @@ const Home = () => {
     setSelectedRange(event.target.value);
   };
 
-  const filteredItems = items.filter((item) => {
-    const isTitleMatch = item.title
-      .toLowerCase()
-      .includes(product.toLowerCase());
-    const isCategoryMatch = selectedCategory
-      ? item.category === selectedCategory
-      : true;
-    const isPriceMatch = selectedRange ? item.price <= selectedRange : true;
+  const handleAscendingDescending = (event) => {
+    setAccendingDescending(event.target.value);
+  };
 
-    return isTitleMatch && isCategoryMatch && isPriceMatch;
-  });
+  console.log(accendingDescending);
+
+  const filteredItems = items
+    .filter((item) => {
+      const isTitleMatch = item.title
+        .toLowerCase()
+        .includes(product.toLowerCase());
+      const isCategoryMatch = selectedCategory
+        ? item.category === selectedCategory
+        : true;
+      const isPriceMatch = selectedRange ? item.price <= selectedRange : true;
+      return isTitleMatch && isCategoryMatch && isPriceMatch;
+    })
+    .sort((a, b) =>
+      accendingDescending === "ascending"
+        ? a.price - b.price
+        : b.price - a.price
+    );
 
   return (
     <div className="pb-5">
@@ -74,7 +86,7 @@ const Home = () => {
             </label>
           </div>
           <div className="divider"></div>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full sm:max-w-xs">
             <select
               className="select select-bordered"
               onChange={handleCategoryChange}
@@ -113,8 +125,27 @@ const Home = () => {
             </div>
           </div>
           <div className="divider"></div>
+          <div className="">
+            <label className="form-control w-full sm:max-w-xs">
+              <div className="label">
+                <span className="label-text">Price Ascending/Descending</span>
+              </div>
+              <select
+                className="select select-bordered"
+                onChange={handleAscendingDescending}
+                value={accendingDescending}
+              >
+                <option value="" disabled>
+                  Price
+                </option>
+                <option value="ascending">Low to High</option>
+                <option value="descending">High to Low</option>
+              </select>
+            </label>
+          </div>
         </div>
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {filteredItems.length === 0 ? (
             <div className="text-center text-2xl col-span-full text-red-600 justify-center flex items-center">
               No products found
