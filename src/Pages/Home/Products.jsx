@@ -59,7 +59,7 @@ const Products = ({ item }) => {
         <p className="text-lg font-bold">Price: ${price}</p>
         <a
           href="#_"
-          className="inline-block px-2 py-0 text-sm mx-auto text-white bg-blue-800 rounded-full hover:bg-blue-700 mx-0"
+          className="inline-block px-2 py-0 text-sm text-white bg-blue-800 rounded-full hover:bg-blue-700 mx-0"
         >
           Buy Now
         </a>{" "}
