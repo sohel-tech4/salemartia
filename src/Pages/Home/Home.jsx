@@ -60,7 +60,9 @@ const Home = () => {
 
   return (
     <div className="pb-5">
-      <h1 className="text-center text-2xl py-5">Show All Products</h1>
+      <h1 className="text-center text-xl font-bold py-5 uppercase">
+        Show All Products
+      </h1>
       <div className="sm:flex justify-evenly">
         <div className="mx-5">
           <div className="">
@@ -145,10 +147,14 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="container mx-auto px-2 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredItems.length === 0 ? (
-            <div className="text-center text-2xl col-span-full text-red-600 justify-center flex items-center">
-              No products found
+            <div className="text-center col-span-full justify-center flex items-center">
+              <img
+                className="sm:w-1/2"
+                src="../../../public/nproduct.png"
+                alt=""
+              />
             </div>
           ) : (
             filteredItems.map((item) => <Products key={item.id} item={item} />)
